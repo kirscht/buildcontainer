@@ -2,7 +2,7 @@ FROM alpine:3.4
 
 #  Comment
 ADD repositories /etc/apk/repositories
-ADD version /vertion
+ADD version /version
 RUN apk update && apk add --update curl python3 python3-dev py-pip &&\
        /usr/bin/pip install --upgrade pip &&\
     curl -O https://bootstrap.pypa.io/get-pip.py && python3 get-pip.py --user &&\
