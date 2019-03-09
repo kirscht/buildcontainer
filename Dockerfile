@@ -10,3 +10,6 @@ RUN apk update && apk add --update curl python3 python3-dev py-pip &&\
     /root/.local/bin/pip3 install awscli --upgrade --user
 ENV PATH=/root/.local/bin:$PATH
 RUN ~/.local/bin/aws --version
+WORKDIR /usr/local/bin
+RUN curl -o terraform_0.11.12_linux_amd64.zip https://releases.hashicorp.com/terraform/0.11.12/terraform_0.11.12_linux_amd64.zip &&\
+      unzip terraform_0.11.12_linux_amd64.zip && /usr/local/bin/terraform version
