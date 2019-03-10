@@ -1,6 +1,6 @@
 FROM alpine:3.4
 
-#  Comment
+#  Comment 2
 ADD repositories /etc/apk/repositories
 ADD version /version
 RUN apk update && apk add --update curl python3 python3-dev py-pip bash &&\
