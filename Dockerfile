@@ -13,9 +13,11 @@ RUN ~/.local/bin/aws --version
 WORKDIR /usr/local/bin
 RUN curl -o terraform_0.11.12_linux_amd64.zip https://releases.hashicorp.com/terraform/0.11.12/terraform_0.11.12_linux_amd64.zip &&\
       unzip terraform_0.11.12_linux_amd64.zip && /usr/local/bin/terraform version
-Run curl -Lo helm-v2.13.0-linux-amd64.tar.gz https://storage.googleapis.com/kubernetes-helm/helm-v2.13.0-linux-amd64.tar.gz &&\
-      gunzip helm-v2.13.0-linux-amd64.tar.gz && mv linux-amd64/* /usr/local/bin/. && chmod u+x helm tiller &&\
-      ./helm init --upgrade
+Run curl -Lo helm-v2.13.0-linux-amd64.tar.gz https://storage.googleapis.com/kubernetes-helm/helm-v2.13.0-linux-amd64.tar.gz
+RUN tar -xvzf helm-v2.13.0-linux-amd64.tar.gz
+RUN mv linux-amd64/tiller /usr/local/bin/.
+RUN mv linux-amd64/helm /usr/local/bin/.
+RUN chmod u+x helm tiller
 RUN curl -Lo kops https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64 &&\
     chmod +x ./kops && kops version
 RUN curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl &&\
