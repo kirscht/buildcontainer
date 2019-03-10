@@ -13,3 +13,7 @@ RUN ~/.local/bin/aws --version
 WORKDIR /usr/local/bin
 RUN curl -o terraform_0.11.12_linux_amd64.zip https://releases.hashicorp.com/terraform/0.11.12/terraform_0.11.12_linux_amd64.zip &&\
       unzip terraform_0.11.12_linux_amd64.zip && /usr/local/bin/terraform version
+RUN curl -Lo kops https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64 &&\
+    chmod +x ./kops
+RUN curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl &&\
+    chmod +x ./kubectl
